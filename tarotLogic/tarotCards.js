@@ -89,10 +89,10 @@ const pentacles = [
 
 const tarotDeck = [
   ...majorArcana,
-  ...wands,
   ...cups,
+  ...pentacles,
   ...swords,
-  ...pentacles
+  ...wands,
 ];
 
 

@@ -4,6 +4,8 @@ const axios = require('axios');
 
 const app = express();
 app.use(express.json());
+const cors = require("cors");
+app.use(cors()); // Allow all origins
 
 const { tarotDeck, draw } = require('./tarotLogic/tarotCards');
 
@@ -58,8 +60,14 @@ app.get('/test-openai', (req, res) => {
       const message = response.data.choices[0].message.content;
       console.log('Response Received');  
       console.trace("Log trace");    
-      console.log('Full Response:', response.data);
-      res.send(`<pre>${message}</pre>`); // Renders response with line breaks
+      // console.log('Full Response:', response.data);
+      console.log('drawnCards',drawnCards);
+      
+      res.json({
+        drawnCards: drawnCards,
+        selectedCards: selectedCards,  // Send the drawn cards array
+        gptResponse: message        // Send the GPT-4 response
+      });
     })
     .catch(error => res.status(500).json({ error: error.message }));
 });
@@ -68,6 +76,3 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
-
-
-module.exports = { tarotDeck, draw };
