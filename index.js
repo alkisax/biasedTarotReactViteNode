@@ -98,7 +98,9 @@ const errorHandler = (error, request, response, next) => {
 app.use(unknownEndpoint);
 // Add the error handler as the last middleware
 app.use(errorHandler);
-const PORT = process.env.PORT || 3000;
+
+
+const PORT = process.env.PORT
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+  console.log(`Server running on port ${PORT}`)
+})
