@@ -28,7 +28,7 @@ const { getTarotReading } = require('./GPTLogic');
 const apiKey = process.env.OPENAI_API_KEY;
 console.log("Starting");
 
-app.get('/api/test-mongoDB', (req, res) => {
+app.get('/api/test-mongoDB/', (req, res) => {
   Query.find({})
     .then(questions => {
       res.json(questions)
