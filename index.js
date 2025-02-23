@@ -22,12 +22,13 @@ console.log("Starting");
 
 app.get('/test-openai', (req, res) => {
   const userQuestion = req.query.userQuestion || "What do I need to know today?"; // Default question if not provided
-  
+  const bias = req.query.bias;
+
   if (!apiKey) {
     return res.status(500).json({ error: 'Missing OpenAI API key' });
   }
 
-  getTarotReading(userQuestion, apiKey)
+  getTarotReading(userQuestion, apiKey, bias)
     .then(result => {
       res.json({
         drawnCards: result.drawnCards,
