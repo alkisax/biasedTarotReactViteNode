@@ -13,6 +13,9 @@ app.use(express.static('dist')) // to create static render for dist, on the serv
 const mongoURI = process.env.MONGODB_URI;
 mongoose.set('strictQuery',false)
 mongoose.connect(mongoURI)
+  .then(() => {
+    console.log('MongoDB connected successfully');
+  })
 const querySchema = new mongoose.Schema({
   message: String,
   bias: String,
