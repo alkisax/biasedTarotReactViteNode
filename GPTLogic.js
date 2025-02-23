@@ -27,6 +27,8 @@ const getTarotReading = (userQuestion, apiKey) => {
   const fullPrompt = `${tarot_prompt} 
   Question: ${userQuestion} 
   Drawn Cards: ${selectedCards.join(', ')}`;
+  console.log("fullPrompt: ", fullPrompt);
+  
 
   const url = 'https://api.openai.com/v1/chat/completions';
   

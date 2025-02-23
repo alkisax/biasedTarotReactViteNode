@@ -17,15 +17,12 @@ app.use(express.static('dist')) // to create static render for dist, on the serv
 
 const { getTarotReading } = require('./GPTLogic');
 
-// Get the question from query parameters
-const userQuestion =  "What do I need to know today?"; 
-
 const apiKey = process.env.OPENAI_API_KEY;
-// const url = 'https://api.openai.com/v1/chat/completions'
 console.log("Starting");
 
-
 app.get('/test-openai', (req, res) => {
+  const userQuestion = req.query.userQuestion || "What do I need to know today?"; // Default question if not provided
+  
   if (!apiKey) {
     return res.status(500).json({ error: 'Missing OpenAI API key' });
   }
