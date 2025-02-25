@@ -42,6 +42,7 @@ app.get('/api/test-mongoDB/', (req, res) => {
 app.get('/test-openai', (req, res) => {
   const userQuestion = req.query.userQuestion || "What do I need to know today?"; // Default question if not provided
   const bias = req.query.bias;
+  const lang = req.query.lang;
 
   if (!apiKey) {
     return res.status(500).json({ error: 'Missing OpenAI API key' });

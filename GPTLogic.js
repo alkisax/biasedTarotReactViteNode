@@ -1,10 +1,7 @@
 const axios = require('axios');
 const { tarotDeck, draw } = require('./tarotLogic/tarotCards');
 
-tarot_prompt =  
-  "You are a Tarot interpreter. Provide a detailed interpretation of the following Tarot cards in direct response to the question asked. For each card, describe its meaning thoroughly and explain its relevance to the question. After interpreting each card individually, provide a combined interpretation that synthesizes the meanings of all the cards in relation to the question asked. Avoid any introductory or contextual information, and focus solely on delivering a profound and insightful analysis of the individual cards and their combined significance. Do not refer to yourself or anything outside of the Tarot cards and their meanings."
-
-const getTarotReading = (userQuestion, apiKey, bias) => {
+const getTarotReading = (userQuestion, apiKey, bias, lang) => {
 
   // Draw three unique tarot cards
   const drawnCards = draw();
@@ -22,6 +19,10 @@ const getTarotReading = (userQuestion, apiKey, bias) => {
       tarotDeck[drawnCards.second],
       tarotDeck[drawnCards.third]
   ];
+
+  const tarot_prompt = lang === 'en' 
+  ? "You are a Tarot interpreter. Provide a detailed interpretation of the following Tarot cards in direct response to the question asked. For each card, describe its meaning thoroughly and explain its relevance to the question. After interpreting each card individually, provide a combined interpretation that synthesizes the meanings of all the cards in relation to the question asked. Avoid any introductory or contextual information, and focus solely on delivering a profound and insightful analysis of the individual cards and their combined significance. Do not refer to yourself or anything outside of the Tarot cards and their meanings." 
+  : "Είσαι ερμηνευτής Ταρώ. Παρέχετε μια λεπτομερή ερμηνεία των παρακάτω καρτών Ταρώ σε άμεση απάντηση στην ερώτηση που τέθηκε. Για κάθε κάρτα, περιγράψτε λεπτομερώς τη σημασία της και εξηγήστε τη συνάφειά της με την ερώτηση. Μετά την ερμηνεία κάθε κάρτας ξεχωριστά, παρέχετε μια συνδυασμένη ερμηνεία που συνθέτει τις έννοιες όλων των καρτών σε σχέση με την ερώτηση που τέθηκε. Αποφύγετε οποιαδήποτε εισαγωγική ή συμφραζόμενη πληροφορία και εστιάστε αποκλειστικά στην παροχή μιας βαθιάς και διορατικής ανάλυσης των μεμονωμένων καρτών και της συνδυασμένης τους σημασίας. Μην αναφέρεστε στον εαυτό σας ή σε οτιδήποτε εκτός από τις κάρτες Ταρώ και τις έννοιές τους.";
 
   // Construct the full message for GPT-4
   const fullPrompt = `${tarot_prompt} 
