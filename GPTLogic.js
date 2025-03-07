@@ -36,7 +36,7 @@ const getTarotReading = (userQuestion, apiKey, bias, lang) => {
   const url = 'https://api.openai.com/v1/chat/completions';
   
   return axios.post(url, {
-    model: 'gpt-4',
+    model: 'gpt-3.5-turbo',
     messages: [{ role: 'user', content: fullPrompt }],
   }, {
     headers: {
