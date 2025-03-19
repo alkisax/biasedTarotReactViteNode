@@ -1,5 +1,11 @@
 # Tarot API
 
+**Run the App:** https://biasedtarot.onrender.com
+
+**Github source code:** https://github.com/alkisax/biasedTarotReactViteNode
+
+**Full README:** https://github.com/alkisax/biasedTarotReactViteNode/blob/main/README.md
+
 ## Overview
 This project is a tarot reading API that selects random tarot cards and uses OpenAI's GPT API to provide interpretations. It also integrates with MongoDB to store user queries.
 
